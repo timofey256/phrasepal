@@ -7,56 +7,59 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBlock Grid.Row="1"  FontSize="20" HorizontalAlignment="center" Margin="20"><Bold>Decks</Bold></TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
 
-        <ItemsControl Name="lstMachineFunctions">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <StackPanel Grid.Row="0" Grid.Column="1" Background="Azure" Width="100" Height="50">
-                                <TextBlock Text="name"/>
-                            </StackPanel>
-                        </Grid>
+        <StackPanel
+            Grid.Row="0" 
+            Grid.Column="1">
+            <TextBlock FontSize="20" HorizontalAlignment="center" Margin="0"><Bold>Decks</Bold></TextBlock>
+        </StackPanel>
 
-                        <ItemsControl ItemsSource="{Binding ScaleUnits}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Margin="12,0,0,0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Machine/Scale Unit"/>
-                                        <Button Grid.Row="1" Grid.Column="0" Click="OnDeleteScaleUnit">X</Button>
-                                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name}"/>
-                                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Index, StringFormat='Scale Unit {0}'}"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Horizontal"/>
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                        </ItemsControl>
-                        <Button VerticalAlignment="Center" Click="OnAddScaleUnit">Add Scale Unit</Button>
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <StackPanel
+            x:Name="lstDecks"
+            Grid.Row="1"
+            Grid.Column="1">
+            <Grid Height="70" Background="Aqua">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock FontSize="13" 
+                           Margin="20,0,0,0" 
+                           VerticalAlignment="Center" 
+                           Grid.Column="0" 
+                           Text="MyDeckName"/>
+                <Button 
+                    HorizontalAlignment="Right"
+                    Margin="0,0,20,0"
+                    Height="20" 
+                    Width="20" 
+                    Grid.Column="1" 
+                    Content="..."/>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel
+            Grid.Row="2" 
+            Grid.Column="1">
+            <Button 
+            Grid.Row="2"
+            Grid.Column="1"
+            Content="Add new deck"
+            Click="OnAddNewDeck"
+            Width="100"
+            Height="50"/>
+        </StackPanel>
+
+        
     </Grid>
 </Window>
